@@ -5,4 +5,6 @@ class Api::V1::ArticleResource < JSONAPI::Resource
   attribute :description
   attribute :content
   attribute :date
+
+  filter :slug
 end
