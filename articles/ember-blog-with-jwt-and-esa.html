@@ -1,67 +1,73 @@
 <div class="post lg-px4">
-<div class="right primary">April 17, 2016</div>
-<h1 class="serif">Ember Blog with JWT and Ember Simple Auth, Part 1</h1>
-<p>
-Goal:</p>
-<blockquote>
-<p>Serve an API backed blog with Public (available to everyone) and Private posts (have to log in to see).</p>
-</blockquote>
-<p><img src="../posts/2016-04-17-ember-blog-with-jwt-and-esa-2/final-product-anno.jpg" alt="Final Product"></p>
-<p>We are going to go through the full process for doing this project, including seting up Mirage and Testing our way through. Follow along below or grab the <a href="https://github.com/ryanlabouve/ember-jwt-esa-blog">code on github</a>.</p>
-<pre><code class="hljs coffeescript">ember <span class="hljs-keyword">new</span> ember-jwt-esa-blog`<span class="javascript">
-</span></code></pre><h5 id="notes-">Notes:</h5>
-<ul>
-<li>We'll be using <a href="https://github.com/simplabs/ember-simple-auth">Ember Simple Auth</a> for authentication</li>
-<li>Our API was built in <a href="http://ryanlabouve.com/jwt-rails-api-challenge/">this previous tutorial</a> (<a href="https://jwt.io/">JWT</a> + JSON API)</li>
-<li>We'll use <a href="http://www.ember-cli-mirage.com/">Mirage</a> to mock the API for testing</li>
-</ul>
-<p></p><hr><p></p>
-<p></p><h2>What We're Making, More Detail</h2><p></p>
-<div class="clearfix">
-<div class="col sm-col-4">
-<div class="bold">Public Posts</div>
-<ul>
-<li>List of public posts on left</li>
-</ul>
-<strong>User Login</strong>
-<ul>
-<li><em>User not logged in–</em> show a login form</li>
-<li><em>User logged in–</em> show a button to log out in place of the form
-</li>
-</ul>
-<strong>Private Posts</strong>
-<ul>
-<li><em>User not logged in–</em> show a notice to login</li>
-<li><em>User logged in–</em> Show a lists of posts
-</li>
-</ul>
-<h3>In terms of components</h3>
-<ul>
-<li><code>{{public-posts}}</code> — A list of all public posts</li>
-<li><code>{{blog-post}}</code> — A single post</li>
-<li><code>{{login-form}}</code> — A form to help users login / logout</li>
-<li><code>{{private-posts}}</code>— A list of all private posts</li>
-</ul>
-</div>
-<div class="col sm-col-8">
-<img src="../posts/2016-04-17-ember-blog-with-jwt-and-esa/prototype-components.jpg" alt="Our Prototype w/Components">
-</div>
-</div>
-<hr>
-<h2 id="mocking-the-backend-tdd-for-public-posts">Mocking The Backend &amp; TDD for Public Posts</h2>
-<h3 id="installing-and-configuring-mirage">Installing and Configuring Mirage</h3>
-<p><a href="http://www.ember-cli-mirage.com/">Mirage</a> allows us to fake our API so far as that we can use for testing and development.</p>
-<pre><code class="hljs nginx"><span class="hljs-title">ember</span> install ember-cli-mirage<span class="hljs-variable">@beta</span>
-</code></pre><p>We'll start by configuring mirage to handle our public posts.</p>
-<p>When we do <code>GET /public-posts</code> from an ajax call, we'll get a JSON API compliant object back with posts (which is exactly how <a href="http://ryanlabouve.com/jwt-rails-api-challenge/">our API</a> responds). For Mirage to do this we'll need to create a <code>publicPost</code> mirage-model and a <code>publicPost</code> mirage-factory to start.</p>
-<blockquote>
-<p>Mirage models create <em>tables</em> in Mirage's in memory database, while factories are the blueprints for what the data should look like in those tables.</p>
-</blockquote>
-<pre><code class="hljs nginx"><span class="hljs-title">ember</span> g mirage-model publicPost
+  <p>
+    Goal:</p>
+  <blockquote>
+    <p>Serve an API backed blog with Public (available to everyone) and Private posts (have to log in to see).</p>
+  </blockquote>
+  <p><img src="http://com-ryanlabouve-blog.s3.amazonaws.com/final-product-anno.jpg" alt="Final Product"></p>
+  <p>We are going to go through the full process for doing this project, including seting up Mirage and Testing our way through. Follow along below or grab the <a href="https://github.com/ryanlabouve/ember-jwt-esa-blog">code on github</a>.</p>
+  <pre><code class="hljs coffeescript">ember <span class="hljs-keyword">new</span> ember-jwt-esa-blog`<span class="javascript">
+</span></code></pre>
+  <h5 id="notes-">Notes:</h5>
+  <ul>
+    <li>We'll be using <a href="https://github.com/simplabs/ember-simple-auth">Ember Simple Auth</a> for authentication</li>
+    <li>Our API was built in <a href="http://ryanlabouve.com/jwt-rails-api-challenge/">this previous tutorial</a> (<a href="https://jwt.io/">JWT</a> + JSON API)</li>
+    <li>We'll use <a href="http://www.ember-cli-mirage.com/">Mirage</a> to mock the API for testing</li>
+  </ul>
+  <p></p>
+  <hr>
+  <p></p>
+  <p></p>
+  <h2>What We're Making, More Detail</h2>
+  <p></p>
+  <div class="clearfix">
+    <div class="col sm-col-4">
+      <div class="bold">Public Posts</div>
+      <ul>
+        <li>List of public posts on left</li>
+      </ul>
+      <strong>User Login</strong>
+      <ul>
+        <li><em>User not logged in–</em> show a login form</li>
+        <li><em>User logged in–</em> show a button to log out in place of the form
+        </li>
+      </ul>
+      <strong>Private Posts</strong>
+      <ul>
+        <li><em>User not logged in–</em> show a notice to login</li>
+        <li><em>User logged in–</em> Show a lists of posts
+        </li>
+      </ul>
+      <h3>In terms of components</h3>
+      <ul>
+        <li><code>{{public-posts}}</code> — A list of all public posts</li>
+        <li><code>{{blog-post}}</code> — A single post</li>
+        <li><code>{{login-form}}</code> — A form to help users login / logout</li>
+        <li><code>{{private-posts}}</code>— A list of all private posts</li>
+      </ul>
+    </div>
+    <div class="col sm-col-8">
+      <img src="http://com-ryanlabouve-blog.s3.amazonaws.com/prototype-components.jpg" alt="Our Prototype w/Components">
+    </div>
+  </div>
+  <hr>
+  <h2 id="mocking-the-backend-tdd-for-public-posts">Mocking The Backend &amp; TDD for Public Posts</h2>
+  <h3 id="installing-and-configuring-mirage">Installing and Configuring Mirage</h3>
+  <p><a href="http://www.ember-cli-mirage.com/">Mirage</a> allows us to fake our API so far as that we can use for testing and development.</p>
+  <pre><code class="hljs nginx"><span class="hljs-title">ember</span> install ember-cli-mirage<span class="hljs-variable">@beta</span>
+</code></pre>
+  <p>We'll start by configuring mirage to handle our public posts.</p>
+  <p>When we do <code>GET /public-posts</code> from an ajax call, we'll get a JSON API compliant object back with posts (which is exactly how <a href="http://ryanlabouve.com/jwt-rails-api-challenge/">our API</a> responds). For Mirage to do this we'll need
+    to create a <code>publicPost</code> mirage-model and a <code>publicPost</code> mirage-factory to start.</p>
+  <blockquote>
+    <p>Mirage models create <em>tables</em> in Mirage's in memory database, while factories are the blueprints for what the data should look like in those tables.</p>
+  </blockquote>
+  <pre><code class="hljs nginx"><span class="hljs-title">ember</span> g mirage-model publicPost
 ember g mirage-factory publicPost
-</code></pre><p>We don't have to do anything with the model out of the box.</p>
-<p>For the factory, we'll need to describe what kind of data we'll want back. This should make the Schema from the API <code>PublicPost(title:string, body:text, type:string)</code>.</p>
-<pre><code class="hljs javascript"><span class="hljs-comment">// mirage/factories/public-post.js</span>
+</code></pre>
+  <p>We don't have to do anything with the model out of the box.</p>
+  <p>For the factory, we'll need to describe what kind of data we'll want back. This should make the Schema from the API <code>PublicPost(title:string, body:text, type:string)</code>.</p>
+  <pre><code class="hljs javascript"><span class="hljs-comment">// mirage/factories/public-post.js</span>
 <span class="hljs-keyword">import</span> { Factory, faker } <span class="hljs-keyword">from</span> <span class="hljs-string">'ember-cli-mirage'</span>;
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Factory.extend({
@@ -69,22 +75,26 @@ ember g mirage-factory publicPost
   title: faker.lorem.paragraphs(),
   createdAt: faker.date.past()
 });
-</code></pre><blockquote>
-<p>Mirage is using <a href="https://github.com/FotoVerite/Faker.js">faker</a> to generate realistic fake data. Check it out for additional methods you could use in your factories.</p>
-</blockquote>
-<p>So far, we have a fake table to store our <code>public-posts</code>, and a blueprint to describe what that data should look like, but we are missing a way to associate a route (e.g. <code>GET /public-posts</code>) to that data. So, similar to <code>router.js</code> in Ember we are able to describe these mock mappings in mirage/config.js.</p>
-<pre><code class="hljs javascript"><span class="hljs-comment">// mirage/config.js</span>
+</code></pre>
+  <blockquote>
+    <p>Mirage is using <a href="https://github.com/FotoVerite/Faker.js">faker</a> to generate realistic fake data. Check it out for additional methods you could use in your factories.</p>
+  </blockquote>
+  <p>So far, we have a fake table to store our <code>public-posts</code>, and a blueprint to describe what that data should look like, but we are missing a way to associate a route (e.g. <code>GET /public-posts</code>) to that data. So, similar to <code>router.js</code>    in Ember we are able to describe these mock mappings in mirage/config.js.</p>
+  <pre><code class="hljs javascript"><span class="hljs-comment">// mirage/config.js</span>
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
   <span class="hljs-keyword">this</span>.get(<span class="hljs-string">'/public-posts'</span>);
 }
-</code></pre><blockquote>
-<p>To better understand what Mirage is doing here, I recommend reading <a href="http://www.ember-cli-mirage.com/docs/v0.2.0-beta.8/route-handlers/">the concerning docs</a> or more specifically about the <a href="http://www.ember-cli-mirage.com/docs/v0.2.0-beta.8/shorthands/">shorthands</a>, which allow for such expressive statements.</p>
-</blockquote>
-<p>Now that we've modeled <code>PublicPosts</code> from the backend, let's move on to write some acceptance tests to help us implement <code>PublicPosts</code> on the front-end.</p>
-<h4 id="acceptance-test-for-public-posts">Acceptance Test for Public Posts</h4>
-<pre><code class="hljs cpp">ember g acceptance-test <span class="hljs-keyword">public</span>-posts
-</code></pre><p>(I've left notes in the comments)</p>
-<pre><code class="hljs javascript"><span class="hljs-keyword">import</span> { test } <span class="hljs-keyword">from</span> <span class="hljs-string">'qunit'</span>;
+</code></pre>
+  <blockquote>
+    <p>To better understand what Mirage is doing here, I recommend reading <a href="http://www.ember-cli-mirage.com/docs/v0.2.0-beta.8/route-handlers/">the concerning docs</a> or more specifically about the <a href="http://www.ember-cli-mirage.com/docs/v0.2.0-beta.8/shorthands/">shorthands</a>,
+      which allow for such expressive statements.</p>
+  </blockquote>
+  <p>Now that we've modeled <code>PublicPosts</code> from the backend, let's move on to write some acceptance tests to help us implement <code>PublicPosts</code> on the front-end.</p>
+  <h4 id="acceptance-test-for-public-posts">Acceptance Test for Public Posts</h4>
+  <pre><code class="hljs cpp">ember g acceptance-test <span class="hljs-keyword">public</span>-posts
+</code></pre>
+  <p>(I've left notes in the comments)</p>
+  <pre><code class="hljs javascript"><span class="hljs-keyword">import</span> { test } <span class="hljs-keyword">from</span> <span class="hljs-string">'qunit'</span>;
 <span class="hljs-keyword">import</span> moduleForAcceptance <span class="hljs-keyword">from</span> <span class="hljs-string">'ember-jwt-esa-blog/tests/helpers/module-for-acceptance'</span>;
 
 moduleForAcceptance(<span class="hljs-string">'Acceptance | public posts'</span>);
@@ -114,14 +124,16 @@ test(<span class="hljs-string">'public posts on /'</span>, <span class="hljs-fun
     );
   });
 });
-</code></pre><p>And now if we <code>ember serve</code> and visit <code>http://localhost:4200/tests</code>, Yay! Failing test!</p>
-<p><img src="../posts/2016-04-17-ember-blog-with-jwt-and-esa/pubic-post-failing-tests.jpg" alt="Public Post Failing"></p>
-<p>(<a href="https://github.com/ryanlabouve/ember-jwt-esa-blog/commit/3470e918ccddb93d22e88fa2553af112d8ba27d1">code checkpoint</a>)</p>
-<h4 id="implement-publicposts-">Implement <code>PublicPosts</code></h4>
-<p>Let's work naïvely from the router down. This way, the errors will guide us through the implementation. I'll start by generating the application route and trying to pass in <code>PublicPosts</code> through the model hook.</p>
-<pre><code class="hljs nginx"><span class="hljs-title">ember</span> g route application
-</code></pre><p>And then...</p>
-<pre><code class="hljs javascript"><span class="hljs-comment">// app/routes/application.js</span>
+</code></pre>
+  <p>And now if we <code>ember serve</code> and visit <code>http://localhost:4200/tests</code>, Yay! Failing test!</p>
+  <p><img src="http://com-ryanlabouve-blog.s3.amazonaws.com/pubic-post-failing-tests.jpg" alt="Public Post Failing"></p>
+  <p>(<a href="https://github.com/ryanlabouve/ember-jwt-esa-blog/commit/3470e918ccddb93d22e88fa2553af112d8ba27d1">code checkpoint</a>)</p>
+  <h4 id="implement-publicposts-">Implement <code>PublicPosts</code></h4>
+  <p>Let's work naïvely from the router down. This way, the errors will guide us through the implementation. I'll start by generating the application route and trying to pass in <code>PublicPosts</code> through the model hook.</p>
+  <pre><code class="hljs nginx"><span class="hljs-title">ember</span> g route application
+</code></pre>
+  <p>And then...</p>
+  <pre><code class="hljs javascript"><span class="hljs-comment">// app/routes/application.js</span>
 <span class="hljs-keyword">import</span> Ember <span class="hljs-keyword">from</span> <span class="hljs-string">'ember'</span>;
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Ember.Route.extend({
@@ -129,15 +141,16 @@ test(<span class="hljs-string">'public posts on /'</span>, <span class="hljs-fun
     <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.store.findAll(<span class="hljs-string">'publicPost'</span>);
   }
 });
-</code></pre><p>Cool, so now our tests are throwing <code>Error: No model was found for 'publicPost'</code>. So let's generate that:</p>
-<p><code>ember g model publicPost</code></p>
-<p>Since we know what attributes we're supposed to have on the model, let's dive down a level and write a unit test. While this is not 100% necessary, I think it's a good practice and helps us be intentional about what gets added/removed from the model.</p>
-<p>What we want to test: </p>
-<ol>
-<li>We have the correct number of attributes on the model</li>
-<li>Our attributes match the Schema (i.e. title, body, and createdAt)</li>
-</ol>
-<pre><code class="hljs javascript"><span class="hljs-comment">// test/unit/models/public-post.js</span>
+</code></pre>
+  <p>Cool, so now our tests are throwing <code>Error: No model was found for 'publicPost'</code>. So let's generate that:</p>
+  <p><code>ember g model publicPost</code></p>
+  <p>Since we know what attributes we're supposed to have on the model, let's dive down a level and write a unit test. While this is not 100% necessary, I think it's a good practice and helps us be intentional about what gets added/removed from the model.</p>
+  <p>What we want to test: </p>
+  <ol>
+    <li>We have the correct number of attributes on the model</li>
+    <li>Our attributes match the Schema (i.e. title, body, and createdAt)</li>
+  </ol>
+  <pre><code class="hljs javascript"><span class="hljs-comment">// test/unit/models/public-post.js</span>
 <span class="hljs-keyword">import</span> { moduleForModel, test } <span class="hljs-keyword">from</span> <span class="hljs-string">'ember-qunit'</span>;
 
 moduleForModel(<span class="hljs-string">'public-post'</span>, <span class="hljs-string">'Unit | Model | public post'</span>, {
@@ -171,8 +184,9 @@ test(<span class="hljs-string">'has correct attributes'</span>, <span class="hlj
     );
   });
 });
-</code></pre><p>Now let's lock the tests to <code>Unit | Model | public post</code> and get'em green.</p>
-<pre><code class="hljs javascript"><span class="hljs-keyword">import</span> Model <span class="hljs-keyword">from</span> <span class="hljs-string">'ember-data/model'</span>;
+</code></pre>
+  <p>Now let's lock the tests to <code>Unit | Model | public post</code> and get'em green.</p>
+  <pre><code class="hljs javascript"><span class="hljs-keyword">import</span> Model <span class="hljs-keyword">from</span> <span class="hljs-string">'ember-data/model'</span>;
 <span class="hljs-keyword">import</span> attr <span class="hljs-keyword">from</span> <span class="hljs-string">'ember-data/attr'</span>;
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Model.extend({
@@ -180,11 +194,12 @@ test(<span class="hljs-string">'has correct attributes'</span>, <span class="hlj
   body: attr(<span class="hljs-string">'string'</span>),
   createdAt: attr(<span class="hljs-string">'date'</span>)
 });
-</code></pre><p><img src="../posts/2016-04-17-ember-blog-with-jwt-and-esa/green-model-tests.jpg" alt="Model tests in testem"></p>
-<p>And now we can go back to filter for all...</p>
-<p>We know we have the correct public posts model, and we have that loading with the <code>/</code> route, so what's left?</p>
-<p>We need to actually display them!</p>
-<pre><code class="hljs cs"><span class="hljs-comment">// app/templates/application.hbs</span>
+</code></pre>
+  <p><img src="http://com-ryanlabouve-blog.s3.amazonaws.com/green-model-tests.jpg" alt="Model tests in testem"></p>
+  <p>And now we can go back to filter for all...</p>
+  <p>We know we have the correct public posts model, and we have that loading with the <code>/</code> route, so what's left?</p>
+  <p>We need to actually display them!</p>
+  <pre><code class="hljs cs"><span class="hljs-comment">// app/templates/application.hbs</span>
 {{<span class="hljs-preprocessor">#each model as |post|}}</span>
   &lt;div <span class="hljs-keyword">class</span>=<span class="hljs-string">"public-post"</span>&gt;
     {{post.title}}
@@ -192,19 +207,21 @@ test(<span class="hljs-string">'has correct attributes'</span>, <span class="hlj
 {{<span class="hljs-keyword">else</span>}}
   No Public Posts Found!
 {{/each}}
-</code></pre><p>:boom: passing tests!</p>
-<blockquote>
-<p>Below is a screenshot from <code>pauseTest();</code>, where we can preview Mirage doing its thing.</p>
-</blockquote>
-<p><img src="../posts/2016-04-17-ember-blog-with-jwt-and-esa/public-post-pause-test.jpg" alt="Public Posts Pause Test"></p>
-<p>(<a href="https://github.com/ryanlabouve/ember-jwt-esa-blog/commit/37724c13a56ac3ed2b5c550ec3e7901855195d82">code checkpoint</a>)</p>
-<p>Let's take a moment to refactor towards the component structure we decided on about for <code>{{public-post}}</code>. And now, our acceptance test will help ensure we don't mess stuff up as we do.</p>
-<h4 id="-public-post-minor-refactor-1">{{public-post}}: Minor Refactor #1</h4>
-<pre><code class="hljs cpp">ember g component <span class="hljs-keyword">public</span>-posts --pod
+</code></pre>
+  <p>:boom: passing tests!</p>
+  <blockquote>
+    <p>Below is a screenshot from <code>pauseTest();</code>, where we can preview Mirage doing its thing.</p>
+  </blockquote>
+  <p><img src="http://com-ryanlabouve-blog.s3.amazonaws.com/public-post-pause-test.jpg" alt="Public Posts Pause Test"></p>
+  <p>(<a href="https://github.com/ryanlabouve/ember-jwt-esa-blog/commit/37724c13a56ac3ed2b5c550ec3e7901855195d82">code checkpoint</a>)</p>
+  <p>Let's take a moment to refactor towards the component structure we decided on about for <code>{{public-post}}</code>. And now, our acceptance test will help ensure we don't mess stuff up as we do.</p>
+  <h4 id="-public-post-minor-refactor-1">{{public-post}}: Minor Refactor #1</h4>
+  <pre><code class="hljs cpp">ember g component <span class="hljs-keyword">public</span>-posts --pod
 </code></pre><pre><code class="hljs cpp"><span class="hljs-comment">// app/templates/application.hbs</span>
 {{<span class="hljs-keyword">public</span>-posts posts=model}}
-</code></pre><p>Notice we are changing the variable to be named <code>posts</code>.</p>
-<pre><code class="hljs cs"><span class="hljs-comment">// app/components/public-post/template.hbs</span>
+</code></pre>
+  <p>Notice we are changing the variable to be named <code>posts</code>.</p>
+  <pre><code class="hljs cs"><span class="hljs-comment">// app/components/public-post/template.hbs</span>
 {{<span class="hljs-preprocessor">#each posts as |post|}}</span>
   &lt;div <span class="hljs-keyword">class</span>=<span class="hljs-string">"public-post"</span>&gt;
     {{post.title}}
@@ -212,9 +229,10 @@ test(<span class="hljs-string">'has correct attributes'</span>, <span class="hlj
 {{<span class="hljs-keyword">else</span>}}
   No Public Posts Found!
 {{/each}}
-</code></pre><p>Our previous acceptance test is now green, but a component integration test is blowing up.</p>
-<p>This test was generated with our component... let's change it to be more of a sanity check. We are just going to render the component, and expect some type of class on the components wrapper for now:</p>
-<pre><code class="hljs javascript"><span class="hljs-keyword">import</span> { moduleForComponent, test } <span class="hljs-keyword">from</span> <span class="hljs-string">'ember-qunit'</span>;
+</code></pre>
+  <p>Our previous acceptance test is now green, but a component integration test is blowing up.</p>
+  <p>This test was generated with our component... let's change it to be more of a sanity check. We are just going to render the component, and expect some type of class on the components wrapper for now:</p>
+  <pre><code class="hljs javascript"><span class="hljs-keyword">import</span> { moduleForComponent, test } <span class="hljs-keyword">from</span> <span class="hljs-string">'ember-qunit'</span>;
 <span class="hljs-keyword">import</span> hbs <span class="hljs-keyword">from</span> <span class="hljs-string">'htmlbars-inline-precompile'</span>;
 
 moduleForComponent(<span class="hljs-string">'public-posts'</span>, <span class="hljs-string">'Integration | Component | public posts'</span>, {
@@ -225,27 +243,30 @@ test(<span class="hljs-string">'it renders'</span>, <span class="hljs-function">
   <span class="hljs-keyword">this</span>.render(hbs<span class="hljs-string">`{{public-posts}}`</span>);
   assert.equal(<span class="hljs-keyword">this</span>.$(<span class="hljs-string">'.public-posts-component'</span>).length, <span class="hljs-number">1</span>);
 });
-</code></pre><p>And add a CSS class name to our component wrapper to make it pass.</p>
-<pre><code class="hljs javascript"><span class="hljs-comment">// app/components/public-post/component.js</span>
+</code></pre>
+  <p>And add a CSS class name to our component wrapper to make it pass.</p>
+  <pre><code class="hljs javascript"><span class="hljs-comment">// app/components/public-post/component.js</span>
 
 <span class="hljs-keyword">import</span> Ember <span class="hljs-keyword">from</span> <span class="hljs-string">'ember'</span>;
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Ember.Component.extend({
   classNames: [<span class="hljs-string">'public-posts-component'</span>]
 });
-</code></pre><p>:boom: Passing tests!</p>
-<p>(<a href="https://github.com/ryanlabouve/ember-jwt-esa-blog/commit/8ae992c2411e6d0298bb74ae5c26f8fba0211d48">code checkpoinst</a>)</p>
-<p>And now let's make one more refactor for our <code>{{blog-post}}</code> component.</p>
-<h4 id="-blog-post-minor-refactor-2">{{blog-post}} Minor Refactor #2</h4>
-<pre><code class="hljs nginx"><span class="hljs-title">ember</span> g component blog-post --pod
+</code></pre>
+  <p>:boom: Passing tests!</p>
+  <p>(<a href="https://github.com/ryanlabouve/ember-jwt-esa-blog/commit/8ae992c2411e6d0298bb74ae5c26f8fba0211d48">code checkpoinst</a>)</p>
+  <p>And now let's make one more refactor for our <code>{{blog-post}}</code> component.</p>
+  <h4 id="-blog-post-minor-refactor-2">{{blog-post}} Minor Refactor #2</h4>
+  <pre><code class="hljs nginx"><span class="hljs-title">ember</span> g component blog-post --pod
 </code></pre><pre><code class="hljs php"><span class="hljs-comment">// app/components/public-post/template.hbs</span>
 {{<span class="hljs-comment">#each posts as |post|}}</span>
   {{blog-post title=post.title body=post.body}}
 {{<span class="hljs-keyword">else</span>}}
   No <span class="hljs-keyword">Public</span> Posts Found!
 {{/each}}
-</code></pre><p>At this point our tests are passing, but nothing is showing up! Let's use this moment to make use of the component integration test that was generated for us with <code>{{blog-post}}</code></p>
-<pre><code class="hljs javascript"><span class="hljs-comment">// tests/integration/components/blog-post/component-test.js</span>
+</code></pre>
+  <p>At this point our tests are passing, but nothing is showing up! Let's use this moment to make use of the component integration test that was generated for us with <code>{{blog-post}}</code></p>
+  <pre><code class="hljs javascript"><span class="hljs-comment">// tests/integration/components/blog-post/component-test.js</span>
 <span class="hljs-keyword">import</span> { moduleForComponent, test } <span class="hljs-keyword">from</span> <span class="hljs-string">'ember-qunit'</span>;
 <span class="hljs-keyword">import</span> hbs <span class="hljs-keyword">from</span> <span class="hljs-string">'htmlbars-inline-precompile'</span>;
 
@@ -265,9 +286,10 @@ test(<span class="hljs-string">'it renders'</span>, <span class="hljs-function">
   assert.equal(<span class="hljs-keyword">this</span>.$(<span class="hljs-string">'.blog-post-title'</span>).text().trim(), title);
   assert.equal(<span class="hljs-keyword">this</span>.$(<span class="hljs-string">'.blog-post-body'</span>).text().trim(), body);
 });
-</code></pre><p>And now, great!! Failing tests. Once we implement this functinality, we'll be sure to have generally the right thing showing on screen.</p>
-<p><img src="../posts/2016-04-17-ember-blog-with-jwt-and-esa/blog-post-failing.jpg" alt="blog-post-failing.jpg"></p>
-<pre><code class="hljs cs"><span class="hljs-comment">// app/components/blog-post/template.hbs</span>
+</code></pre>
+  <p>And now, great!! Failing tests. Once we implement this functinality, we'll be sure to have generally the right thing showing on screen.</p>
+  <p><img src="http://com-ryanlabouve-blog.s3.amazonaws.com/blog-post-failing.jpg" alt="blog-post-failing.jpg"></p>
+  <pre><code class="hljs cs"><span class="hljs-comment">// app/components/blog-post/template.hbs</span>
 &lt;div <span class="hljs-keyword">class</span>=<span class="hljs-string">"blog-post"</span>&gt;
   &lt;h5 <span class="hljs-keyword">class</span>=<span class="hljs-string">"blog-post-title"</span>&gt;
     {{title}}
@@ -276,18 +298,20 @@ test(<span class="hljs-string">'it renders'</span>, <span class="hljs-function">
     {{body}}
   &lt;/div&gt;
 &lt;/div&gt;
-</code></pre><p>YAY! Green tests.</p>
-<p>(<a href="https://github.com/ryanlabouve/ember-jwt-esa-blog/commit/1711cd2eb38ce69535c7d9ea08fee2abcf3344d2">code checkpoinst</a>)</p>
-<h2 id="cut-over-to-live-api">Cut over to live API</h2>
-<p>We've been working out of tests this whole time, without much going on for <code>http://localhost:4200</code>.</p>
-<p>Let's go ahead and cut over to our live api for a sanity check on our progress. This is the one we made in <a href="http://ryanlabouve.com/jwt-rails-api-challenge/">this tutorial</a>, which I'm going to assume is running on <code>http://localhost:3000</code>.</p>
-<blockquote>
-<p>If setting up the API is an issue, please let me know on twitter <a href="http://twitter.com/ryanlabouve">@ryanlabouve</a> and I'd be happy to deploy to heroku and swap tutorial to use external link</p>
-</blockquote>
-<pre><code class="hljs nginx"><span class="hljs-title">ember</span> g adapter application
-</code></pre><p>By default, this is <a href="http://emberjs.com/api/data/classes/DS.JSONAPIAdapter.html">DS.JSONAPIAdapter</a>, which is what we want.</p>
-<p>Inside the environment, we'll want to configure our host name (i.e. <code>http://localhost:3000</code>) and make sure Mirage is only turned on for the test environment.</p>
-<pre><code class="hljs cs"><span class="hljs-comment">// config/environment.js</span>
+</code></pre>
+  <p>YAY! Green tests.</p>
+  <p>(<a href="https://github.com/ryanlabouve/ember-jwt-esa-blog/commit/1711cd2eb38ce69535c7d9ea08fee2abcf3344d2">code checkpoinst</a>)</p>
+  <h2 id="cut-over-to-live-api">Cut over to live API</h2>
+  <p>We've been working out of tests this whole time, without much going on for <code>http://localhost:4200</code>.</p>
+  <p>Let's go ahead and cut over to our live api for a sanity check on our progress. This is the one we made in <a href="http://ryanlabouve.com/jwt-rails-api-challenge/">this tutorial</a>, which I'm going to assume is running on <code>http://localhost:3000</code>.</p>
+  <blockquote>
+    <p>If setting up the API is an issue, please let me know on twitter <a href="http://twitter.com/ryanlabouve">@ryanlabouve</a> and I'd be happy to deploy to heroku and swap tutorial to use external link</p>
+  </blockquote>
+  <pre><code class="hljs nginx"><span class="hljs-title">ember</span> g adapter application
+</code></pre>
+  <p>By default, this is <a href="http://emberjs.com/api/data/classes/DS.JSONAPIAdapter.html">DS.JSONAPIAdapter</a>, which is what we want.</p>
+  <p>Inside the environment, we'll want to configure our host name (i.e. <code>http://localhost:3000</code>) and make sure Mirage is only turned on for the test environment.</p>
+  <pre><code class="hljs cs"><span class="hljs-comment">// config/environment.js</span>
 
 <span class="hljs-comment">// Disable mirage by default</span>
 ENV[<span class="hljs-string">'ember-cli-mirage'</span>] = {
@@ -308,8 +332,9 @@ ENV[<span class="hljs-string">'ember-cli-mirage'</span>] = {
     enabled: <span class="hljs-keyword">true</span>
   };
 }
-</code></pre><p>Then inside the generated adapter.</p>
-<pre><code class="hljs javascript"><span class="hljs-keyword">import</span> JSONAPIAdapter <span class="hljs-keyword">from</span> <span class="hljs-string">'ember-data/adapters/json-api'</span>;
+</code></pre>
+  <p>Then inside the generated adapter.</p>
+  <pre><code class="hljs javascript"><span class="hljs-keyword">import</span> JSONAPIAdapter <span class="hljs-keyword">from</span> <span class="hljs-string">'ember-data/adapters/json-api'</span>;
 <span class="hljs-keyword">import</span> config <span class="hljs-keyword">from</span> <span class="hljs-string">'../config/environment'</span>;
 
 <span class="hljs-keyword">const</span> { host } = config;
@@ -317,10 +342,11 @@ ENV[<span class="hljs-string">'ember-cli-mirage'</span>] = {
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> JSONAPIAdapter.extend({
   host
 });
-</code></pre><p>And now if we look at our browser, we should see a lot of posts loading from the api!</p>
-<p><img src="../posts/2016-04-17-ember-blog-with-jwt-and-esa/cut-over-to-api.jpg" alt="Cut to api"></p>
-<p>This is actually quite cool. We've implemented all of this without a live API, and then we cutover to the actually API and it just works.</p>
-<p>(<a href="https://github.com/ryanlabouve/ember-jwt-esa-blog/commit/37b91cfd9c3bbf990581a1fa3fa242f5d196c87d">checkpoint, level complete</a>)</p>
-<p>Now that we have our API hooked up and public information flowing correctly, next up is working on Ember Simple Auth, Logging in and Out, and Private Posts! See ya next time!
-</p>
+</code></pre>
+  <p>And now if we look at our browser, we should see a lot of posts loading from the api!</p>
+  <p><img src="http://com-ryanlabouve-blog.s3.amazonaws.com/cut-over-to-api.jpg" alt="Cut to api"></p>
+  <p>This is actually quite cool. We've implemented all of this without a live API, and then we cutover to the actually API and it just works.</p>
+  <p>(<a href="https://github.com/ryanlabouve/ember-jwt-esa-blog/commit/37b91cfd9c3bbf990581a1fa3fa242f5d196c87d">checkpoint, level complete</a>)</p>
+  <p>Now that we have our API hooked up and public information flowing correctly, next up is working on Ember Simple Auth, Logging in and Out, and Private Posts! See ya next time!
+  </p>
 </div>

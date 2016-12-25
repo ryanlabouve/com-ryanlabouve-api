@@ -1,91 +1,114 @@
 <div class="post lg-px4">
-<div class="right primary">September 27, 2015</div>
-<h1 class="serif">Ember Problems Infiniscroll with an API</h1>
-<p>Instead of clicking next for days, let's hookup infiniscroll! This is part 3 of my 10 part series on Ember Problems.</p>
-<p>For this project we'll be using the projects from the <a href="http://ryanlabouve.com/ember-problems-pagination-with-api">last post</a>:</p>
-<p><style>.embed-container{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;max-width:100%;}.embed-container iframe,.embed-container object,.embed-container embed{position:absolute;top:0;left:0;width:100%;height:100%;}</style></p><div class="embed-container"><iframe src="https://www.youtube.com/embed//v6BYu9nGz7Q" frameborder="0" allowfullscreen=""></iframe></div><p></p>
-<p>We'll be using <a href="https://github.com/hhff/ember-infinity">hhff/ember-infinity</a>. It's pleasantly customizable and looks like it will be supported through the future.</p>
-<pre><code class="hljs nginx"><span class="hljs-title">ember</span> install ember-infinity
-</code></pre><p><a href="https://github.com/hhff/ember-infinity">https://github.com/hhff/ember-infinity</a>.</p>
-<h3 id="what-we-need-to-hook-it-up">What we need to hook it up</h3>
-<p>So, here's a rundown of the data we need to make this work. All of these values can be customized, but we only need to do one. Check the documentation if you need to customize more.</p>
-<table class="table-light border rounded">
-<thead class="bg-darken-1">
-<tr>
-<th>
-Variable
-</th>
-<th>
-Default
-</th>
-<th>
-From our API
-</th>
-<th>
-Direction
-</th>
-<th>
-Description
-</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>
-Page Size
-</td>
-<td>
-page_size
-</td>
-<td>
-page_size
-</td>
-<td>
-Sending
-</td>
-<td>
-Size of return payload
-</td>
-</tr>
-<tr>
-<td>
-Page
-</td>
-<td>
-page
-</td>
-<td>
-page
-</td>
-<td>
-Sending
-</td>
-<td>
-Current index in current dataset
-</td>
-</tr>
-<tr>
-<td>
-Page
-</td>
-<td>
-meta.total
-</td>
-<td>
-meta.pagination.totalPages
-</td>
-<td>
-Receiving
-</td>
-<td>
-Current pages, given other variables
-</td>
-</tr>
-</tbody>
-</table>
-<h2 id="hooking-it-up-in-our-route">Hooking it up in our route</h2>
-<p>After installing, let's hook our route up based on the documentation on <a href="https://github.com/hhff/ember-infinity">hhff/ember-infinity</a>.</p>
-<pre><code class="hljs javascript"><span class="hljs-comment">// routes/posts.js</span>
+  <p>Instead of clicking next for days, let's hookup infiniscroll! This is part 3 of my 10 part series on Ember Problems.</p>
+  <p>For this project we'll be using the projects from the <a href="http://ryanlabouve.com/ember-problems-pagination-with-api">last post</a>:</p>
+  <p>
+    <style>
+      .embed-container {
+        position: relative;
+        padding-bottom: 56.25%;
+        height: 0;
+        overflow: hidden;
+        max-width: 100%;
+      }
+
+      .embed-container iframe,
+      .embed-container object,
+      .embed-container embed {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+    </style>
+  </p>
+  <div class="embed-container">
+    <iframe src="https://www.youtube.com/embed//v6BYu9nGz7Q" frameborder="0" allowfullscreen=""></iframe>
+  </div>
+  <p></p>
+  <p>We'll be using <a href="https://github.com/hhff/ember-infinity">hhff/ember-infinity</a>. It's pleasantly customizable and looks like it will be supported through the future.</p>
+  <pre><code class="hljs nginx"><span class="hljs-title">ember</span> install ember-infinity
+</code></pre>
+  <p><a href="https://github.com/hhff/ember-infinity">https://github.com/hhff/ember-infinity</a>.</p>
+  <h3 id="what-we-need-to-hook-it-up">What we need to hook it up</h3>
+  <p>So, here's a rundown of the data we need to make this work. All of these values can be customized, but we only need to do one. Check the documentation if you need to customize more.</p>
+  <table class="table-light border rounded">
+    <thead class="bg-darken-1">
+      <tr>
+        <th>
+          Variable
+        </th>
+        <th>
+          Default
+        </th>
+        <th>
+          From our API
+        </th>
+        <th>
+          Direction
+        </th>
+        <th>
+          Description
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          Page Size
+        </td>
+        <td>
+          page_size
+        </td>
+        <td>
+          page_size
+        </td>
+        <td>
+          Sending
+        </td>
+        <td>
+          Size of return payload
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Page
+        </td>
+        <td>
+          page
+        </td>
+        <td>
+          page
+        </td>
+        <td>
+          Sending
+        </td>
+        <td>
+          Current index in current dataset
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Page
+        </td>
+        <td>
+          meta.total
+        </td>
+        <td>
+          meta.pagination.totalPages
+        </td>
+        <td>
+          Receiving
+        </td>
+        <td>
+          Current pages, given other variables
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <h2 id="hooking-it-up-in-our-route">Hooking it up in our route</h2>
+  <p>After installing, let's hook our route up based on the documentation on <a href="https://github.com/hhff/ember-infinity">hhff/ember-infinity</a>.</p>
+  <pre><code class="hljs javascript"><span class="hljs-comment">// routes/posts.js</span>
 <span class="hljs-keyword">import</span> Ember <span class="hljs-keyword">from</span> <span class="hljs-string">'ember'</span>;
 <span class="hljs-keyword">import</span> InfinityRoute <span class="hljs-keyword">from</span> <span class="hljs-string">"ember-infinity/mixins/route"</span>;
 
@@ -99,9 +122,10 @@ Current pages, given other variables
     });
   }
 });
-</code></pre><h2 id="simplifying-our-controller">Simplifying our controller</h2>
-<p>Since we don't rely on interactions from our template to advance our model, we can greatly simplify our controller.</p>
-<pre><code class="hljs javascript"><span class="hljs-keyword">import</span> Ember <span class="hljs-keyword">from</span> <span class="hljs-string">'ember'</span>;
+</code></pre>
+  <h2 id="simplifying-our-controller">Simplifying our controller</h2>
+  <p>Since we don't rely on interactions from our template to advance our model, we can greatly simplify our controller.</p>
+  <pre><code class="hljs javascript"><span class="hljs-keyword">import</span> Ember <span class="hljs-keyword">from</span> <span class="hljs-string">'ember'</span>;
 
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Ember.Controller.extend({
   metaData: Ember.computed(<span class="hljs-string">'model'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>{
@@ -109,9 +133,10 @@ Current pages, given other variables
     <span class="hljs-keyword">return</span> Ember.get(metadata, <span class="hljs-string">'pagination'</span>);
   }),
 });
-</code></pre><h2 id="the-template">The Template</h2>
-<p>And finally our template:</p>
-<pre><code class="hljs cs">
+</code></pre>
+  <h2 id="the-template">The Template</h2>
+  <p>And finally our template:</p>
+  <pre><code class="hljs cs">
 &lt;div <span class="hljs-keyword">class</span>=<span class="hljs-string">"clearfix"</span>&gt;
   &lt;h1 <span class="hljs-keyword">class</span>=<span class="hljs-string">"border-bottom py2 center"</span>&gt;Posts ({{metaData.total}})&lt;/h1&gt;
 &lt;/div&gt;
@@ -125,5 +150,6 @@ Current pages, given other variables
 {{/each}}
 {{infinity-loader infinityModel=model destroyOnInfinity=<span class="hljs-keyword">true</span>}}
 
-</code></pre><p>And :boom: it's done!</p>
+</code></pre>
+  <p>And :boom: it's done!</p>
 </div>
