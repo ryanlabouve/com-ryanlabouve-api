@@ -1,0 +1,11 @@
+deploy:
+  provider: heroku
+  api_key:
+    secure: faKZX/PfyTp62i/gqo5Y64gBlfmyqVuM44v6JuR1Pbj0m1pmIQgcMYuOkiBKPXK768mLPpyuJnr/HUpwvANj6Ar1dNkhz+59OaiPo1+MGBjeDe7cbW7lFojq59G4uNaTq9ZHfDqoec9dFQLD0OglrprF9NB/aKliwmzxzogsjcrnMOWjszIw+98bo7bqcJkDD+VsHvOUniY0mCLADFuleve3ALmIFNdGBMwCexqu5W94mdsL/TE79qKHoKYf10Ul3mzrPUCOC7ixUx9t8+bNf4I0G2KRLBpzqcyvQ7FcnK38mFjA5By4eoY8p+NaREINiwDZszMY3Up8VbNXbLXTAYPX3TMcWfOwgPtmz9B7LXuxcJu+0AFmuX6yq8nTMDBevh0Qq64nlOPV2tvNI4TokrwmJl9UKevlaBtewRIAo71CHrLRwAH0ibhCqI6UxyP9GhLXDesRG2YrKky/NaiZwLXwG3fwHXKvDj7vpbGDXFtINyaSoG6gLBYv6hBUZo1UzzQ/1vdNNavtmZK5bWW7Lpfp8D4/iDgm/cdLEDRFnA5YbF7gtZwImOP5x3Yo68ipv9McH1FjxXreHaEqHU01Dg9kEnmv6RCmNlImvj39U/Hx4ViXdZTJ7iKNkUEQtABIETNE7+1TcXH/+RlAbx3RqknA8ixdpFOTR1NP4vqVnYI=
+  app: blog-ryanlabouve-api
+  on:
+    repo: ryanlabouve/com-ryanlabouve-api
+  run:
+    - "rake db:migrate"
+    - "rake db:seed"
+    - "rake cleanup"
