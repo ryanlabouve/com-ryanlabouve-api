@@ -1,3 +1,9 @@
+language: ruby
+rvm:
+  - 2.3.3
+cache: bundler
+services:
+  - postgresql
 deploy:
   provider: heroku
   api_key:
@@ -5,7 +11,7 @@ deploy:
   app: blog-ryanlabouve-api
   on:
     repo: ryanlabouve/com-ryanlabouve-api
-  run:
-    - "rake db:migrate"
-    - "rake db:seed"
-    - "rake cleanup"
+# run:
+#   - rake db:migrate
+#   - rake db:seed
+#   - rake cleanup
