@@ -39,6 +39,7 @@ GEM
       minitest (~> 5.1)
       tzinfo (~> 1.1)
     arel (7.1.4)
+    bugsnag (5.0.1)
     builder (3.2.2)
     byebug (9.0.6)
     coderay (1.1.1)
@@ -132,6 +133,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bugsnag
   byebug
   faker
   jsonapi-resources
