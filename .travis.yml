@@ -11,7 +11,8 @@ deploy:
   app: blog-ryanlabouve-api
   on:
     repo: ryanlabouve/com-ryanlabouve-api
-# run:
-#   - rake db:migrate
-#   - rake db:seed
-#   - rake cleanup
+script:
+  - rake db:migrate
+  - rake db:seed
+  - rake db:test
+  - rake cleanup
