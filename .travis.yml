@@ -15,7 +15,6 @@ script:
 - bundle exec rake db:migrate
 - bundle exec rake db:seed
 - bundle exec rake test
-- bundle exec rake cleanup
 notifications:
   slack:
     secure: Xnwuje/rst/02ZjOp72uJVPNp8v2YLlSEHp2ZQ9hVyfb+nuPH03+erNByrekMd+w0OVPV4t6ZQ56+wPNpD0p5HoTuVlc4FbG4MaT53hV9EXJlXcj6uthaPgk5VgdBop0ppkU5xrkQQJTaukh21LFHyAzb+A1Hk052LLipQawdxcFZ0e3mdvqMYcv/K58O8SzraQ4Uf4Aag/uQNx3k+7taW8tBDPG2MgppeOyeELaK51RA/nkHuiJoS234FkRE/54W1Rr+sFZ68gA3ARtOvb2PJakplEKqgBYEqogALOD9d/98Gpxnd9XwXM2TfvIf6lle6Dwy2dNTCSU0l17RZ/61QwbmXbBO6MLZQwNx7YdqL19U/BveoXMWaBI/xXULkD1TZCw2SbiBB9exuqXfIa1cThSjru8dNCPGogSxjKkXp+rhNz3Q2PYi4vmio8tVAdC3LsvmJaOW5PK73Y9/rPZkSCRqmFGKntEAdbOJa6jJCRkW34Fo7dtLBt2slIIu3Q1mvnJjMV35x8Jslhc+Ir8jOAU5hMqVkjLC9SMCV4+8bN/v92klmdrAzuF7aZz+HSLpvmf4hm3Ex6HQ+XtpzN2ZUCXiuKaDwy+PxoDguEz6CriW7LkBVgJr565zTZl1v3MGCIuiDTnbgeGrPfhKPgj10bAOpl9cVOfFlkn0U+Su0A=
