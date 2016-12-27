@@ -3,7 +3,7 @@
   <blockquote>
     <p>Serve an API backed blog with Public (available to everyone) and Private posts (have to log in to see).</p>
   </blockquote>
-  <p><img src="http://com-ryanlabouve-blog.s3.amazonaws.com/final-product-anno.jpg" alt="Final Product"></p>
+  <img src="http://com-ryanlabouve-blog.s3.amazonaws.com/final-product-anno.jpg" alt="Final Product">
   <p>Welcome to part 2. Haven't done part 1 yet? Catch up <a href="http://ryanlabouve.com/ember-blog-with-jwt-and-esa/">here</a>.</p>
   <p>Today we are going to focus on installing and customizing Ember Simple Auth, TDD'ing and building features along the way.</p>
   <p>Here's the Specific Agenda:</p>
@@ -226,7 +226,7 @@ test(<span class="hljs-string">'If a user puts in the wrong login credentials, t
 });
 </code></pre>
   <p>Right now our tests make a giant wall of "better luck next time". Let's just start picking from the top.</p>
-  <p><img src="http://com-ryanlabouve-blog.s3.amazonaws.com/part2-fu-tests.jpg" alt="fu tests"></p>
+  <img src="http://com-ryanlabouve-blog.s3.amazonaws.com/part2-fu-tests.jpg" alt="fu tests">
   <h4 id="login-form">Login Form</h4>
   <p>Generate login form component:</p>
   <pre><code class="hljs nginx"><span class="hljs-title">ember</span> g component login-form --pod
@@ -255,7 +255,7 @@ test(<span class="hljs-string">'If a user puts in the wrong login credentials, t
 &lt;/div&gt;
 </code></pre>
   <p>Cool. More red. Not a ton-o-info from the actual tests, so let's check out our console. <code>.logoutBtn</code> not found.</p>
-  <p><img src="http://com-ryanlabouve-blog.s3.amazonaws.com/part2-2-fu-tests.jpg" alt="fu tests 2"></p>
+  <img src="http://com-ryanlabouve-blog.s3.amazonaws.com/part2-2-fu-tests.jpg" alt="fu tests 2">
   <h4 id="logout-form">Logout Form</h4>
   <p>The strategy here is to use the <code>session</code> from ESA to show a login form, unless we are <code>session.isAuthenticated</code>, where we'll show a logout form.</p>
   <p>First, let's get the session in our component</p>
@@ -430,7 +430,7 @@ login() {
   }
 });
 </code></pre>
-  <p><img src="http://com-ryanlabouve-blog.s3.amazonaws.com/part2-3-fu-tests.jpg" alt="user can login"></p>
+  <img src="http://com-ryanlabouve-blog.s3.amazonaws.com/part2-3-fu-tests.jpg" alt="user can login">
   <h4 id="logging-user-out">Logging User Out</h4>
   <p>This is quite a bit easier than the login portion:</p>
   <pre><code class="hljs cs"><span class="hljs-comment">// app/components/login-form/component.js</span>
@@ -619,7 +619,7 @@ ember g adapter privatePost
 </code></pre>
   <h3 id="adjust-components">Adjust Components</h3>
   <p>From here on out it's just a bunch of small adjustments all over the place. I'm just going to link to the commit and go over a few highlights:</p>
-  <p><img src="http://com-ryanlabouve-blog.s3.amazonaws.com/final-product.jpg" alt="Final Product"></p>
+  <img src="http://com-ryanlabouve-blog.s3.amazonaws.com/final-product.jpg" alt="Final Product">
   <ul>
     <li>Due to the HTML / CSS structure required for some bootstrap components, I had to put classesNames on the <code>component.js</code> in several cases.</li>
     <li>I changed the selectors being used in a few acceptance tests for similar reasons.</li>

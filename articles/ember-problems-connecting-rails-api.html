@@ -58,7 +58,7 @@ bundle <span class="hljs-built_in">exec</span> rake db:migrate
 open <span class="hljs-url">http://localhost:3000/todos</span>
 </code></pre>
   <p>we’ll see an empty json array.</p>
-  <p><img src="http://com-ryanlabouve-blog.s3.amazonaws.com/ep1-after-scaffold.png" alt="Ember Problems 1: Data After Scaffold"></p>
+  <img src="http://com-ryanlabouve-blog.s3.amazonaws.com/ep1-after-scaffold.png" alt="Ember Problems 1: Data After Scaffold">
   <h3 id="adding-fake-data">Adding Fake Data</h3>
   <p>Before we move on, let’s quickly generate some fake data to populate our api using the <a href="https://github.com/stympy/faker">faker gem</a>.</p>
   <h4 id="adding-faker-to-gemfile">Adding Faker to Gemfile</h4>
@@ -81,7 +81,7 @@ open <span class="hljs-url">http://localhost:3000/todos</span>
   <pre><code class="hljs bash">bundle <span class="hljs-built_in">exec</span> rake db:seed
 </code></pre>
   <p>Now we can refresh <code>http://localhost:3000/todos</code> to verify that our seeds works.</p>
-  <p><img src="http://com-ryanlabouve-blog.s3.amazonaws.com/ep1-data-preview.png" alt="Preview of Seed Data"></p>
+  <img src="http://com-ryanlabouve-blog.s3.amazonaws.com/ep1-data-preview.png" alt="Preview of Seed Data">
   <h3 id="switching-to-active-model-serializer">Switching to Active Model Serializer</h3>
   <p><a href="https://github.com/rails-api/active_model_serializers">Active Model Serializer</a> is is what we’ll use to craft the JSON that our API returns. We need to do this because Ember expects a certain format for the JSON to be in, and also because
     we’ll want to strip off un-needed properties from the JSON.</p>
@@ -103,7 +103,7 @@ gem <span class="hljs-string">'active_model_serializers'</span>, <span class="hl
 <span class="hljs-keyword">end</span>
 </code></pre>
   <p>Then if we refersh <code>http://localhost:3000/todos</code>, we’ll also notice that we have a <code>todos:</code> root for our json (which is what Ember expects), and we have ommited all unneeded properties from our objects (i.e. created_at and updated_at).</p>
-  <p><img src="http://com-ryanlabouve-blog.s3.amazonaws.com/ep1-after-serializer.png" alt="After Serializer"></p>
+  <img src="http://com-ryanlabouve-blog.s3.amazonaws.com/ep1-after-serializer.png" alt="After Serializer">
   <h2 id="switching-ember-app-to-activemodeladapter">Switching Ember App to ActiveModelAdapter</h2>
   <p>So now let’s go back to TodoMVC and switch to using our API.</p>
   <h3 id="boot-ember-with-proxy">Boot Ember with Proxy</h3>
@@ -118,7 +118,7 @@ gem <span class="hljs-string">'active_model_serializers'</span>, <span class="hl
 });
 </code></pre>
   <p>Now go to the browser and check it out!</p>
-  <p><img src="http://com-ryanlabouve-blog.s3.amazonaws.com/ep1-todomvc.png" alt="Todomvc with API"></p>
+  <img src="http://com-ryanlabouve-blog.s3.amazonaws.com/ep1-todomvc.png" alt="Todomvc with API">
   <p>Thanks for joining me on part one of Ember Problems. Next time we’ll be looking at pagination.</p>
   <h3 id="edit-also-update-the-serializer">EDIT!: Also, Update the Serializer</h3>
   <p>Make sure you are using <code>ActiveModelSerializer</code> so the names are correctly translating from Ember camelCase style to Rails rails_underscore_style. This will be in <code>app/serializers/application.js</code></p>

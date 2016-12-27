@@ -4,7 +4,7 @@
   <blockquote>
     <p>Serve an API backed blog with Public (available to everyone) and Private posts (have to log in to see).</p>
   </blockquote>
-  <p><img src="http://com-ryanlabouve-blog.s3.amazonaws.com/final-product-anno.jpg" alt="Final Product"></p>
+  <img src="http://com-ryanlabouve-blog.s3.amazonaws.com/final-product-anno.jpg" alt="Final Product">
   <p>We are going to go through the full process for doing this project, including seting up Mirage and Testing our way through. Follow along below or grab the <a href="https://github.com/ryanlabouve/ember-jwt-esa-blog">code on github</a>.</p>
   <pre><code class="hljs coffeescript">ember <span class="hljs-keyword">new</span> ember-jwt-esa-blog`<span class="javascript">
 </span></code></pre>
@@ -126,7 +126,7 @@ test(<span class="hljs-string">'public posts on /'</span>, <span class="hljs-fun
 });
 </code></pre>
   <p>And now if we <code>ember serve</code> and visit <code>http://localhost:4200/tests</code>, Yay! Failing test!</p>
-  <p><img src="http://com-ryanlabouve-blog.s3.amazonaws.com/pubic-post-failing-tests.jpg" alt="Public Post Failing"></p>
+  <img src="http://com-ryanlabouve-blog.s3.amazonaws.com/pubic-post-failing-tests.jpg" alt="Public Post Failing">
   <p>(<a href="https://github.com/ryanlabouve/ember-jwt-esa-blog/commit/3470e918ccddb93d22e88fa2553af112d8ba27d1">code checkpoint</a>)</p>
   <h4 id="implement-publicposts-">Implement <code>PublicPosts</code></h4>
   <p>Let's work naïvely from the router down. This way, the errors will guide us through the implementation. I'll start by generating the application route and trying to pass in <code>PublicPosts</code> through the model hook.</p>
@@ -195,7 +195,7 @@ test(<span class="hljs-string">'has correct attributes'</span>, <span class="hlj
   createdAt: attr(<span class="hljs-string">'date'</span>)
 });
 </code></pre>
-  <p><img src="http://com-ryanlabouve-blog.s3.amazonaws.com/green-model-tests.jpg" alt="Model tests in testem"></p>
+  <img src="http://com-ryanlabouve-blog.s3.amazonaws.com/green-model-tests.jpg" alt="Model tests in testem">
   <p>And now we can go back to filter for all...</p>
   <p>We know we have the correct public posts model, and we have that loading with the <code>/</code> route, so what's left?</p>
   <p>We need to actually display them!</p>
@@ -212,7 +212,7 @@ test(<span class="hljs-string">'has correct attributes'</span>, <span class="hlj
   <blockquote>
     <p>Below is a screenshot from <code>pauseTest();</code>, where we can preview Mirage doing its thing.</p>
   </blockquote>
-  <p><img src="http://com-ryanlabouve-blog.s3.amazonaws.com/public-post-pause-test.jpg" alt="Public Posts Pause Test"></p>
+  <img src="http://com-ryanlabouve-blog.s3.amazonaws.com/public-post-pause-test.jpg" alt="Public Posts Pause Test">
   <p>(<a href="https://github.com/ryanlabouve/ember-jwt-esa-blog/commit/37724c13a56ac3ed2b5c550ec3e7901855195d82">code checkpoint</a>)</p>
   <p>Let's take a moment to refactor towards the component structure we decided on about for <code>{{public-post}}</code>. And now, our acceptance test will help ensure we don't mess stuff up as we do.</p>
   <h4 id="-public-post-minor-refactor-1">{{public-post}}: Minor Refactor #1</h4>
@@ -288,7 +288,7 @@ test(<span class="hljs-string">'it renders'</span>, <span class="hljs-function">
 });
 </code></pre>
   <p>And now, great!! Failing tests. Once we implement this functinality, we'll be sure to have generally the right thing showing on screen.</p>
-  <p><img src="http://com-ryanlabouve-blog.s3.amazonaws.com/blog-post-failing.jpg" alt="blog-post-failing.jpg"></p>
+  <img src="http://com-ryanlabouve-blog.s3.amazonaws.com/blog-post-failing.jpg" alt="blog-post-failing.jpg">
   <pre><code class="hljs cs"><span class="hljs-comment">// app/components/blog-post/template.hbs</span>
 &lt;div <span class="hljs-keyword">class</span>=<span class="hljs-string">"blog-post"</span>&gt;
   &lt;h5 <span class="hljs-keyword">class</span>=<span class="hljs-string">"blog-post-title"</span>&gt;
@@ -344,7 +344,7 @@ ENV[<span class="hljs-string">'ember-cli-mirage'</span>] = {
 });
 </code></pre>
   <p>And now if we look at our browser, we should see a lot of posts loading from the api!</p>
-  <p><img src="http://com-ryanlabouve-blog.s3.amazonaws.com/cut-over-to-api.jpg" alt="Cut to api"></p>
+  <img src="http://com-ryanlabouve-blog.s3.amazonaws.com/cut-over-to-api.jpg" alt="Cut to api">
   <p>This is actually quite cool. We've implemented all of this without a live API, and then we cutover to the actually API and it just works.</p>
   <p>(<a href="https://github.com/ryanlabouve/ember-jwt-esa-blog/commit/37b91cfd9c3bbf990581a1fa3fa242f5d196c87d">checkpoint, level complete</a>)</p>
   <p>Now that we have our API hooked up and public information flowing correctly, next up is working on Ember Simple Auth, Logging in and Out, and Private Posts! See ya next time!
