@@ -114,6 +114,13 @@ Articles = [
     description: 'Setup Ember Simple Auth and connect to Rails API for our toy blog',
     content: 'articles/ember-blog-with-jwt-and-esa-2.html',
     date: 'April 18, 2016'
+  },
+  {
+    title: 'Ember Closure Action Explorations Pt 1',
+    slug: 'ember-closure-action-explorations-pt-1',
+    description: 'Explore the fundamentals of Ember closure actions',
+    content: 'articles/Ember-Closure-Action-Explorations-Part-1.html',
+    date: 'Dec 29, 2016'
   }
 ]
 
