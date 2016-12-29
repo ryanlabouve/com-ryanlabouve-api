@@ -1,8 +1,8 @@
 <p>Actions in Ember have chaging drastically since <a href="https://github.com/emberjs/rfcs/blob/master/text/0050-improved-actions.md#re-targeting-the-scope-of-a-closure-action">RFC 50</a>.</p>
 <p>Closure actions have enabled new patterns in both Ember templates and in communicating between child and parent components.</p>
-<p>This guided tour through closure actions evolved from my notes while exploring.</p>
+<p>This guided tour through closure actions evolved from my notes while exploring the changes to actions.</p>
 <h2><a id="Highlevel_changes_6"></a>High-level changes</h2>
-<p>Historically in Ember-land, the old-school <code>{{action</code>'s operated in “element space” where the action helper “attaches an event listener that fires a bubbling action”. The action existed on the parent and when invoked via <code>sendAction</code> <a href="http://emberjs.com/api/classes/Ember.ActionSupport.html#method_sendAction">(docs)</a> contained the parent’s lexical scope.</p>
+<p>The old-school <code>{{action</code>'s operated in “element space” where the action helper “attaches an event listener that fires a bubbling action”. The action existed on the parent and when invoked via <code>sendAction</code> <a href="http://emberjs.com/api/classes/Ember.ActionSupport.html#method_sendAction">(docs)</a> contained the parent’s lexical scope.</p>
 <p>One massive disadvantage to this approach was that it was impossible to pass a callback to a downstream component from a called action.</p>
 <p>The new <code>(action</code> helper “closes over an action from the current scope so it can be […] passed around and called later.”— which is much easier to work with.</p>
 <p>(All via <a href="https://github.com/emberjs/rfcs/blob/master/text/0050-improved-actions.md">Ember.js’s RFC 50</a>).</p>
