@@ -14,7 +14,6 @@ gem 'puma', '~> 3.0'
 # gem 'bcrypt', '~> 3.1.7'
 #
 gem "skylight"
-gem "bugsnag"
 gem 'jsonapi-resources'
 gem 'faker'
 gem 'rack-cors', :require => 'rack/cors'
@@ -40,6 +39,7 @@ group :development do
 end
 
 group :production do
+  gem "bugsnag"
   gem 'pg'
 end
 
