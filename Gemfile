@@ -17,6 +17,7 @@ gem "skylight"
 gem 'jsonapi-resources'
 gem 'faker'
 gem 'rack-cors', :require => 'rack/cors'
+gem 'pg'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -40,7 +41,6 @@ end
 
 group :production do
   gem "bugsnag"
-  gem 'pg'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
