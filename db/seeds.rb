@@ -121,6 +121,13 @@ Articles = [
     description: 'Explore the fundamentals of Ember closure actions',
     content: 'articles/Ember-Closure-Action-Explorations-Part-1.html',
     date: 'Dec 29, 2016'
+  },
+  {
+    title: 'Exploring Ember Closure Actions Part 2: New Patterns',
+    slug: 'ember-closure-action-explorations-pt-2',
+    description: 'New patterns with closure actions and friends',
+    content: 'articles/Ember-Closure-Action-Explorations-Part-2.html',
+    date: 'Jan 6, 2017'
   }
 ]
 
