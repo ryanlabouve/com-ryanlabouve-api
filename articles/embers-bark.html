@@ -4,21 +4,21 @@
 
 <p>So the community can rapidly solve new and emerging problems while the core is stable.</p>
 
-<h2 id="proofofcommunitysolvingbigproblemsembercli">Proof of community solving big problems: Ember-CLI</h2>
+<h2 id="proofofcommunitysolvingbigproblemsembercli">Proof of community solving big problems: Ember CLI</h2>
 
 <ul>
-<li><a href="https://ember-cli.com/">Ember-CLI</a> — Ember's command line interface</li>
+<li><a href="https://ember-cli.com/">Ember CLI</a> — Ember's command line interface</li>
 </ul>
 
-<p>Ember-CLI hooked me on Ember. I was spending days configuring grunt or gulp for a new project. And days again when I came back to old projects.</p>
+<p>Ember CLI hooked me on Ember. I was spending days configuring grunt or gulp for a new project. And days again when I came back to old projects.</p>
 
 <p>With Ember this was not the case.</p>
 
 <p>I took build tooling in other languages for granted (e.g. Ruby -> Rails). Javascript and Javascript frameworks were in my mind a second class citizen to "real" programming languages and "serious" frameworks.</p>
 
-<p>Ember-CLI wrapped a ton of useful parts for making web applications (Ember, Babel so I could write ES6, modules, etc) and shipped them to the browser with little fuss.</p>
+<p>Ember CLI wrapped a ton of useful parts for making web applications (Ember, Babel so I could write ES6, modules, etc) and shipped them to the browser with little fuss.</p>
 
-<p>What follows is the chapter after Ember-CLI, a list of Ember's most fundamental <a href="https://madhatted.com/2016/2/10/be-the-bark-ember-js-community">bark</a> with a little explaination of why each one is important.</p>
+<p>What follows is the chapter after Ember CLI, a list of Ember's most fundamental <a href="https://madhatted.com/2016/2/10/be-the-bark-ember-js-community">bark</a> with a little explaination of why each one is important.</p>
 
 <h2 id="tourofimothemostfundamentalemberaddons">Tour of (IMO) the Most Fundamental Ember Addons</h2>
 
@@ -38,6 +38,20 @@ saveChangesTask: task(function * () {
 </code></pre>
 
 <ul>
+<li><a href="https://github.com/emberjs/data">ember-data</a> — "A data persistence library for Ember.js"</li>
+</ul>
+
+<pre><code>this.store.findAll('entry');
+this.store.findRecord('entry', 123);
+</code></pre>
+
+<ul>
+<li><p>Protocol agnostic (i.e. doesn't matter if it's a JSON API or websockets</p></li>
+
+<li><p>Store for managing lifecycle of models</p></li>
+
+<li><p>Highly extensible via adapters</p></li>
+
 <li><p><a href="https://github.com/ember-engines/ember-engines">ember-engines</a> — "Engines allow multiple logical applications to be composed together into a single application"</p></li>
 
 <li><p><a href="https://ember-fastboot.com/">ember-fastboot</a> — "Using FastBoot, you can serve rendered HTML to browsers and other clients without requiring them to download JavaScript assets."  </p></li>
