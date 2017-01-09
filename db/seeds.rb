@@ -131,7 +131,7 @@ Articles = [
   },
   {
     title: 'Ember Addons I Use Every Time',
-    slug: 'embers-bark',
+    slug: 'embers-addons-i-use-every-time',
     description: 'A tour through the addons I use in every Ember projects. Specifically addons that change how I structure and write Ember applications.',
     content: 'articles/embers-bark.html',
     date: 'Jan 8, 2017'
