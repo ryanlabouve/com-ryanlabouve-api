@@ -24,3 +24,6 @@ Things you may want to cover:
 * ...
 
 default port should be 3079
+
+Lazy way to convert markdown files:
+https://www.browserling.com/tools/markdown-to-html

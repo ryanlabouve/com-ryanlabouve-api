@@ -128,6 +128,13 @@ Articles = [
     description: 'New patterns with closure actions and friends',
     content: 'articles/Ember-Closure-Action-Explorations-Part-2.html',
     date: 'Jan 6, 2017'
+  },
+  {
+    title: 'Ember Addons I Use Every Time',
+    slug: 'embers-bark',
+    description: 'A tour through the addons I use in every Ember projects. Specifically addons that change how I structure and write Ember applications.',
+    content: 'articles/embers-bark.html',
+    date: 'Jan 8, 2017'
   }
 ]
 
